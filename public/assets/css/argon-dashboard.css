@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@100&display=swap');
 /*!
  * Bootstrap v5.2.0-beta1 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -100,12 +104,26 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.inter{
+    font-family: 'Inter', sans-serif;
+}
+
+.inter:focus{
+    color: black;
+}
+
+.article{
+    width: 122%;
+}
+
+
 hr {
-  margin: 1rem 0;
-  color: inherit;
-  border: 0;
-  border-top: 1px solid;
-  opacity: 0.25;
+  margin: 8rem 0.5rem 0 0.5rem;
+  color: black;
+  /* border: 0; */
+  border: 2px solid #E2E8F0;
+  opacity: 100%;
+
 }
 
 h1,
@@ -26934,3 +26952,4 @@ pre[class*="language-"] {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+

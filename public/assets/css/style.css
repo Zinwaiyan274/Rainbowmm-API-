@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@100&display=swap');
+.card{
+width: 448px;
+height: 408px;
+background: #FFFFFF;
+box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1), 0px 2px 20px rgba(0, 0, 0, 0.06);
+border-radius: 8px;
+}
+.logo{
+    padding-top: 30px;
+}
+.head{
+    margin-top: 80px;
+    margin-bottom: 70px;
+}
+.head h1{
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 120%;
+}
+label{
+width: 368px;
+height: 24px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+color: #2D3748;
+}
+input{
+box-sizing: border-box;
+height: 40px;
+background: #FFFFFF;
+border: 1px solid #E2E8F0;
+border-radius: 6px;
+padding-left: 16px;
+}
+input::placeholder{
+height: 24px;
+left: 16px;
+right: 16px;
+top: calc(50% - 24px/2);
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+color: rgba(0, 0, 0, 0.36);
+}
+i{
+color: #2D3748;
+font-size: 20px;
+margin-left: -40px;
+cursor: pointer;
+}
+span{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 40px;
+padding-left: 10px;
+color: #e53e3e;
+}
+.btn{
+    background-color: #2B7BAE;
+    color: white;
+}
+.btn:hover{
+background-color: #2B98DE;
+color: white;
+}
+.btn:focus{
+background-color: #164563;
+color: white;
+}
+
+/* .article{
+    border: 1px solid black;
+} */
