@@ -28,28 +28,40 @@
         <div class="d-flex justify-content-center align-items-center">
           <div class="card shadow-lg">
             <div class="card-body px-5">
-              <div class="mb-md-5 mt-md-4 pb-5">
+             <form action="{{ route('login') }}" method="POST">
+                @csrf
+                <div class="mb-md-5 mt-md-4 pb-5">
 
-                <!-- Username Input -->
-                <div class="form-outline form-white mb-4 ">
-                  <label class="form-label">Username</label>
-                  <input type="text" class="col-12" placeholder="Enter Name"/>
+                    <!-- Username Input -->
+                    <div class="form-outline form-white mb-4 ">
+                      <label class="form-label">Username</label>
+                      <input type="text" name="userName" class="col-12" placeholder="Enter Name"/>
+                        @error('userName')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <!-- Username Input -->
+
+                    <!-- Password Input -->
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label">Password</label>
+                      <div class="d-flex align-items-center">
+                        <input type="password" name="password" class="col-12" placeholder="******" id="pass">
+                        <i class="fa-solid fa-eye" id="togglePassword"></i>
+                      </div>
+                        @error('password')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+
+                        @if (Session::has('error'))
+                            <span>{{ Session::get('error') }}</span>
+                        @endif
+                    </div>
+                    <!-- Password Input -->
+
+                    <button class="btn px-5 text-center col-12" type="submit">Sign in</button>
                 </div>
-                <!-- Username Input -->
-
-                <!-- Password Input -->
-                <div class="form-outline form-white mb-4">
-                  <label class="form-label">Password</label>
-                  <div class="d-flex align-items-center">
-                    <input type="password" class="col-12" placeholder="******" id="pass">
-                    <i class="fa-solid fa-eye" id="togglePassword"></i>
-                  </div>
-                  <span>Your crenditial doesn't match our record.</span>
-                </div>
-                <!-- Password Input -->
-
-                <button class="btn px-5 text-center col-12" type="submit">Sign in</button>
-            </div>
+             </form>
           </div>
         </div>
       </div>

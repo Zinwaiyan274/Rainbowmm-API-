@@ -46,7 +46,6 @@
                             <i class="fa-solid fa-circle-plus fs-1" style="color: #3B71FE"></i>
                         </div>
                     </div>
-
                 </div>
             </main>
         </div>

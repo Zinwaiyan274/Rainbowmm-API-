@@ -13,22 +13,21 @@
                     </div>
                 </nav>
                 <!-- End Navbar -->
-                <div class="">
-                    {{-- <div class="row border border-radius-xl mx-5" style="width: 94.5%; height: 87.4vh;">
-                        <div class="row ms-2 mt-3">
-                            <div class="col-12">
-                                <label for="" class="fs-4">Upload Certificate</label>
-                                <input type="file" class="form-control form-control-lg">
-                            </div>
-                        </div>
-                    </div> --}}
+                <form action="{{ route('uploadCertificateProcess') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row border border-radius-xl mb-5 mx-5" style="height: 82.3vh" >
-                        <div class="col-12 mt-5">
+                        <div class="col-10 mt-5">
                             <label for="" class="fs-4">Title of the Article</label>
-                            <input type="file" class="form-control form-control-lg">
+                            <input type="file" class="form-control form-control-lg" name="img">
+                            @error('img')
+                                <div class="text-danger ms-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-2" style="margin-top: 93px">
+                            <button class="btn btn-lg btn-success col-12" type="submit">Click</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </main>
         </div>
     </div>

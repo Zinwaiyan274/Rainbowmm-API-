@@ -30,7 +30,7 @@
             <div class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-5" id="sidenav-main">
                 <div class="sidenav-header m-auto mb-3 mt-3">
                     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-                    <a class="navbar-brand m-0 d-flex justify-content-center" href="{{ route('articlesList') }}">
+                    <a class="navbar-brand m-0 d-flex justify-content-center" href="{{ route('articlesPage') }}">
                         <img src="{{ asset('assets/album/onlyLogo.svg') }}" class="navbar-brand-img" style="width: 60px" alt="main_logo">
                         <p class="mt-2 inter">Rainbow MM Family</p>
                     </a>
@@ -46,7 +46,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('articlesList') }}">
+                            <a class="nav-link" href="{{ route('articlesPage') }}">
                                 <button class="btn w-100">
                                     <div class="fs-5 me-2 d-flex align-items-center">
                                         <i class="fa-solid fa-clipboard-list"></i>
@@ -79,9 +79,12 @@
                 </div>
                 <hr class="">
                 <div class="sidenav-footer mx-3">
-                    <a class="btn mb-0 mt-3 w-100 text-white" href="" type="button" style="background-color: #BD3325">
-                        Sign Out
-                    </a>
+                    <form action="{{ route('logoutProcess') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-danger mb-0 mt-3 w-100 text-white" type="submit">
+                            Sign Out
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

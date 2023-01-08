@@ -1,38 +1,42 @@
 <?php
 
+use App\Http\Middleware\AuthCheck;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\CertificateController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// login, logout
+Route::controller(AuthController::class)->group(function() {
+    Route::get('/', 'loginPage')->name('loginPage');
 
-Route::get('/', function(){
-    return view('login');
+    Route::post('/login', 'login')->name('login');
+
+    Route::post('/', 'logoutProcess')->name('logoutProcess');
 });
 
-Route::get('/dashboard', function () {
-    return view('articles');
-})->name('articlesList');
+Route::middleware([AuthCheck::class])->prefix('dashboard')->group(function () {
+    // articles
+    Route::controller(ArticleController::class)->group(function() {
+        Route::get('articles', 'articlesPage')->name('articlesPage');
 
-Route::get('dashboard/articles/upload', function(){
-    return view('uploadArticle');
-})->name('uploadArticle');
+        Route::get('articles/upload', 'uploadArticle')->name('uploadArticle');
+    });
 
-Route::get('dashboard/user', function(){
-    return view('user');
-})->name('userList');
+    //  user
+    Route::controller(UserController::class)->group(function() {
+        Route::get('user/list', 'userList')->name('userList');
+    });
 
-Route::get('dashboard/certificate', function() {
-    return view('certificate');
-})->name('certificateList');
+    // certificate
+    Route::controller(CertificateController::class)->group(function() {
+        Route::get('certificate/list', 'certificateList')->name('certificateList');
+        Route::get('certificate/upload', 'uploadCertificate')->name('uploadCertificate');
+        Route::post('certifiate/upload', 'uploadCertificateProcess')->name('uploadCertificateProcess');
+        Route::post('certificate/delete/{id}', 'deleteCertificate')->name('deleteCertificate');
+    });
+});
 
-Route::get('dashboard/certificate/upload', function(){
-    return view('uploadCertificate');
-})->name('uploadCertificate');
+
+
