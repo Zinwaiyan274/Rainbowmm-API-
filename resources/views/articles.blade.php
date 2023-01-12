@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="col-12">
+    <div class="col-xxl-12 offset-xxl-0 col-xl-10 offset-xl-2 col-lg-10 col-md-6">
         <div class="article bg-white border-radius-xl my-3 pb-1 fixed-start ">
             <main class="main-content position-relative border-radius-lg ">
                 <!-- Navbar -->
@@ -11,7 +11,7 @@
                             <h3 class="font-weight-bolder inter" style="color: #1A202C; font-size: 20px">Articles</h3>
                         </nav>
                         <div class="collapse navbar-collapse" id="navbar">
-                            <div class="d-flex align-items-center" style="margin-left: 1200px">
+                            <div class="d-flex align-items-center searchBar">
                                 <div class="input-group">
                                     <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
                                     <input type="text" class="form-control" placeholder="Type here...">
@@ -23,8 +23,8 @@
                 </nav>
                 <!-- End Navbar -->
                 <div class="">
-                    <div class="row border border-radius-xl mx-5" style="width: 94.5%">
-                        <div class="col-4">
+                    <div class="row border border-radius-xl mx-5">
+                        <div class="col-xl-4">
                             <div class="card w-75 m-5 shadow-xl">
                                 <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
                                   alt="Hollywood Sign on The Hill" />

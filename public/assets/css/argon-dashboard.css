@@ -112,8 +112,32 @@ body {
     color: black;
 }
 
-.article{
+/* .article{
     width: 122%;
+} */
+
+@media(min-width: 992px) {
+    .searchBar{
+        margin-left: 500px
+    }
+}
+
+@media(min-width: 1200px){
+    .searchBar{
+        margin-left: 650px;
+    }
+    .article{
+        width: 112%;
+    }
+}
+
+@media(min-width: 1400px){
+    .searchBar{
+        margin-left: 1180px;
+    }
+    .article{
+        width: 122%;
+    }
 }
 
 

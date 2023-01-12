@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="col-12">
+    <div class="col-xxl-12 offset-xxl-0 col-xl-10 offset-xl-2 col-lg-10 col-md-6">
         <div class="article bg-white border-radius-xl my-3 pb-1 fixed-start ">
             <main class="main-content position-relative border-radius-lg ">
                 <!-- Navbar -->
@@ -16,15 +16,15 @@
                 <form action="{{ route('uploadCertificateProcess') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row border border-radius-xl mb-5 mx-5" style="height: 82.3vh" >
-                        <div class="col-10 mt-5">
+                        <div class="col-9 mt-5">
                             <label for="" class="fs-4">Title of the Article</label>
                             <input type="file" class="form-control form-control-lg" name="img">
                             @error('img')
                                 <div class="text-danger ms-1">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-2" style="margin-top: 93px">
-                            <button class="btn btn-lg btn-success col-12" type="submit">Click</button>
+                        <div class="col-2 ms-5" style="margin-top: 93px">
+                            <button class="btn btn-lg btn-success" type="submit">Click</button>
                         </div>
                     </div>
                 </form>

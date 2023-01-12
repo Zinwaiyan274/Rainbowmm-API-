@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="col-12">
+    <div class="col-xxl-12 offset-xxl-0 col-xl-10 offset-xl-2 col-lg-10 col-md-6">
         <div class="article bg-white border-radius-xl my-3 pb-1 fixed-start ">
             <main class="main-content position-relative border-radius-lg ">
                 <!-- Navbar -->
