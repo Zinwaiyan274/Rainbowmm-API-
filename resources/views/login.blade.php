@@ -23,15 +23,14 @@
   </div>
 
   <section class="">
-    <div class="container h-80">
+    <div class="container">
       <div class="row">
         <div class="d-flex justify-content-center align-items-center">
-          <div class="card shadow-lg">
-            <div class="card-body px-5">
+          <div class="card shadow-lg" style="height: 100%">
+            <div class="card-body px-5" >
              <form action="{{ route('login') }}" method="POST">
                 @csrf
-                <div class="mb-md-5 mt-md-4 pb-5">
-
+                <div class="mb-md-5 mt-md-4">
                     <!-- Username Input -->
                     <div class="form-outline form-white mb-4 ">
                       <label class="form-label">Username</label>
@@ -59,7 +58,7 @@
                     </div>
                     <!-- Password Input -->
 
-                    <button class="btn px-5 text-center col-12" type="submit">Sign in</button>
+                    <button class="btn px-5 mt-4 text-center col-12" type="submit">Sign in</button>
                 </div>
              </form>
           </div>

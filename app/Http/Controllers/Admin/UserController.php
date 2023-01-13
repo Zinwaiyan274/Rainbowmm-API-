@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     // user list page
     public function userList(){
-        $data = User::paginate(7);
+        $data = User::where('role', 'user')->paginate(7);
 
         return view('user', compact('data'));
     }

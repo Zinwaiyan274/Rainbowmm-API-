@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Certificate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,6 +43,8 @@ class CertificateController extends Controller
 
         Certificate::insert([
             'image' => $fileName,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         return redirect()->route('certificateList')->with(['success' => 'New Certificate has been added successfully!']);
