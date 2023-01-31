@@ -20,8 +20,11 @@ Route::middleware([AuthCheck::class])->prefix('dashboard')->group(function () {
     // articles
     Route::controller(ArticleController::class)->group(function() {
         Route::get('articles', 'articlesPage')->name('articlesPage');
-
         Route::get('articles/upload', 'uploadArticle')->name('uploadArticle');
+        Route::post('articles/upload','saveArticle')->name('saveArticle');
+        Route::get('articles/detail/{id}','detail')->name('articleDetail');
+        Route::get('articles/edit/{id}','edit')->name('articleEdit');
+        Route::post('articles/update/{id}','update')->name('articleUpdate');
     });
 
     //  user
