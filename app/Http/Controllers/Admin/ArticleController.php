@@ -16,9 +16,6 @@ class ArticleController extends Controller
     public function articlesPage(){
         $articles = Post::with('postContents')->paginate(6);
         return view('articles.articles',['articles'=>$articles]);
-        // $post = Post::get();
-        // $post_content = PostContent::get();
-        // return view('articles.articles',['post'=>$post,'post_content'=>$post_content]);
     }
 
     // upload article page
