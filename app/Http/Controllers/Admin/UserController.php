@@ -14,4 +14,15 @@ class UserController extends Controller
 
         return view('user', compact('data'));
     }
+
+    // user search
+    public function userSearch(Request $request){
+        $key = $request->searchKey;
+
+        $data = User::where('name', 'like', '%'.$key.'%')
+                ->orWhere('email', 'like', '%'.$key.'%')
+                ->paginate(7);
+
+        return view('user', compact('data'));
+    }
 }

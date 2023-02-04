@@ -22,11 +22,15 @@ Route::middleware([AuthCheck::class])->prefix('dashboard')->group(function () {
         Route::get('articles', 'articlesPage')->name('articlesPage');
 
         Route::get('articles/upload', 'uploadArticle')->name('uploadArticle');
+
+        // Router::post('articles', "search")->name('search');
     });
 
     //  user
     Route::controller(UserController::class)->group(function() {
         Route::get('user/list', 'userList')->name('userList');
+
+        Route::post('user/list', 'userSearch')->name('userSearch');
     });
 
     // certificate

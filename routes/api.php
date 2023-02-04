@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth:sanctum'],function() {
 
     // user data
     Route::controller(UserController::class)->group(function() {
-        Route::get('/user/list', 'userList');
+        Route::get('/user/details', 'userDetails');
         Route::post('/user/update/{id}', 'updateUser');
     });
 

@@ -8,13 +8,13 @@
                     <div class="row mx-5" >
                         <div class="col-12 mt-5">
                             <label for="" class="fs-4 inter">Title of the Article</label>
-                            <input type="text" class="form-control" style="height: 50px">
+                            <input type="text" class="form-control form-control-lg">
                         </div>
                     </div>
                     <div class="row mx-5" >
                         <div class="col-4 mt-4">
                             <label for="" class="fs-4 inter">Category</label>
-                            <select name="" id="" class="form-control" style="height: 50px">
+                            <select name="" id="" class="form-control form-control-lg">
                                 <option value="" selected>Choose Category</option>
                                 <option value="">Hello</option>
                                 <option value="">Hello</option>
@@ -22,11 +22,11 @@
                         </div>
                         <div class="col-4 mt-4">
                             <label for="" class="fs-4 inter">Author Name</label>
-                            <input type="text" class="form-control" style="height: 50px">
+                            <input type="text" class="form-control form-control-lg">
                         </div>
                         <div class="col-4 mt-4">
                             <label for="" class="fs-4 inter">Hero Image</label>
-                            <input type="file" class="form-control" style="height: 50px">
+                            <input type="file" class="form-control form-control-lg">
                         </div>
                     </div>
                     <div class="row mx-5" id='addMoreArticle'>
@@ -35,8 +35,8 @@
                                 <label for="" class="fs-4 inter">Content</label>
                                 <textarea name="article[0][content]" class="form-control" rows="15" style="resize: none"></textarea>
                             </div>
-                            <div>
-                                <input type="file"  id="files" class="form-control" name="article[0][image]" multiple>
+                            <div class="mt-3">
+                                <input type="file"  id="" class="form-control form-control-lg files" name="article[0][image]" multiple>
                                 {{-- <img id="preview-image-before-upload" style="max-height: 250px;"> --}}
                             </div>
                         </span>
@@ -47,6 +47,7 @@
                                 <button class="col btn btn-lg btn-outline-danger ms-3">Delete</button>
                             </div>
                             <div class="col d-flex justify-content-end" id='addArticle'>
+                              click
                                 <i class="fa-solid fa-circle-plus fs-1" style="color: #3B71FE"></i>
                             </div>
                     </div>
@@ -63,7 +64,7 @@
     $("#addArticle").click(function () {
         ++i;
         $('#addMoreArticle').append('<span class="article" id="more_articles"><div class="col-12 mt-4 "><label class="fs-4 inter">Content</label><textarea name="article['
-            +i+'][content]" class="form-control"  rows="15" style="resize: none"></textarea></div><div><input type="file" id="img_files" class="form-control" name="article['
+            +i+'][content]" class="form-control"  rows="15" style="resize: none"></textarea></div><div class="mt-3"><input type="file" id="" class="form-control form-control-lg img_files" name="article['
             +i+'][image]" multiple><img id="preview-image-before-upload" style="max-height: 250px;"><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></div></span>');
     });
 
@@ -87,7 +88,7 @@ $(document).on({
           $("<div class=\"pip\">" +
             "<img style=\"max-height: 150px;\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
             "<br/><span class=\"remove\"><b>X</b></span>" +
-            "</div>").insertAfter('#img_files').clone().last();
+            "</div>").insertAfter('.img_files').clone().last();
         // var preview = "<div class=\"pip\">" +
         //     "<img style=\"max-height: 150px;\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
         //     "<br/><span class=\"remove\"><b>X</b></span>" +
@@ -103,12 +104,12 @@ $(document).on({
         fileReader.readAsDataURL(f);
       }
   }
-}, '#img_files:last');
+}, '.img_files:last');
 
 
     // image preview
     // $(document).on("change", "#files", function(e){
-    $("#files").on("change", function(e) {
+    $(".files").on("change", function(e) {
       var files = e.target.files,
         filesLength = files.length;
       for (var i = 0; i < filesLength; i++) {
@@ -119,7 +120,7 @@ $(document).on({
           $("<div class=\"pip\">" +
             "<img style=\"max-height: 150px;\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
             "<br/><span class=\"remove\"><b>X</b></span>" +
-            "</div>").insertAfter("#files");
+            "</div>").insertAfter(".files");
           $(".remove").click(function(){
             $(this).parent(".pip").remove();
           });

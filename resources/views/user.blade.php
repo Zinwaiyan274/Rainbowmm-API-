@@ -10,15 +10,18 @@
                         <nav aria-label="breadcrumb" class="mt-4">
                             <h3 class="font-weight-bolder inter" style="color: #1A202C; font-size: 20px">Users</h3>
                         </nav>
-                        <div class="collapse navbar-collapse" id="navbar">
-                            <div class="d-flex align-items-center" style="margin-left: 1200px">
-                                <div class="input-group">
-                                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" placeholder="Type here...">
+                        <form action="{{ route('userSearch') }}" method="POST">
+                            @csrf
+                            <div class="collapse navbar-collapse" id="navbar">
+                                <div class="d-flex align-items-center" style="margin-left: 1200px">
+                                    <div class="input-group">
+                                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" placeholder="Type here..." name="searchKey">
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </nav>
                 <!-- End Navbar -->
@@ -33,24 +36,26 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $item)
-                                    <tr>
-                                        <td class="">
-                                            <img src="{{ asset('userImg/'.$item->image) }}" alt="" width="70px" height="70px" class="rounded-circle float-start me-3">
-                                            <div class="ms-3">
-                                                <h5>{{ $item->name }}</h5>
-                                                <h5>{{ $item->email }}</h5>
-                                            </div>
-                                        </td>
-                                        @if ($item->role == 'admin')
-                                            <td class="text-end">
-                                                <button class="btn btn-danger mt-4" disabled>Remove</button>
+                                    @if ($item->role == 'user')
+                                        <tr>
+                                            <td class="">
+                                                <img src="{{ asset('userImg/'.$item->image) }}" alt="" width="70px" height="70px" class="rounded-circle float-start me-3">
+                                                <div class="ms-3">
+                                                    <h5>{{ $item->name }}</h5>
+                                                    <h5>{{ $item->email }}</h5>
+                                                </div>
                                             </td>
-                                        @else
-                                            <td class="text-end">
-                                                <button class="btn btn-danger mt-4">Remove</button>
-                                            </td>
-                                        @endif
-                                    </tr>
+                                            @if ($item->role == 'admin')
+                                                <td class="text-end">
+                                                    <button class="btn btn-danger mt-4" disabled>Remove</button>
+                                                </td>
+                                            @else
+                                                <td class="text-end">
+                                                    <button class="btn btn-danger mt-4">Remove</button>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>

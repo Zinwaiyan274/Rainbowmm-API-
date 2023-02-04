@@ -19,7 +19,7 @@
 
   <!-- Login Form Card -->
   <div class="head">
-      <h1>Sign in to your account</h1>
+      <h1 class="">Sign in to your account</h1>
   </div>
 
   <section class="">
@@ -30,7 +30,7 @@
             <div class="card-body px-5" >
              <form action="{{ route('login') }}" method="POST">
                 @csrf
-                <div class="mb-md-5 mt-md-4">
+                <div class="mb-md-3 mt-md-4">
                     <!-- Username Input -->
                     <div class="form-outline form-white mb-4 ">
                       <label class="form-label">Username</label>
