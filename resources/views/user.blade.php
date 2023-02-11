@@ -10,16 +10,23 @@
                         <nav aria-label="breadcrumb" class="mt-4">
                             <h3 class="font-weight-bolder inter" style="color: #1A202C; font-size: 20px">Users</h3>
                         </nav>
+                        @if (Session::has('success'))
+                            <div class="alert alert-success alert-dismissible d-flex align-items-center text-white" role="alert">
+                                <p class="my-1">{{ Session::get('success') }}</p>
+                                <button type="button" class="btn-close ms-3" style="margin-top: 2px" data-bs-dismiss="alert" aria-label="Close">
+                                    <i class="fa-solid fa-close fs-4"></i>
+                                </button>
+                            </div>
+                        @endif
                         <form action="{{ route('userSearch') }}" method="POST">
                             @csrf
                             <div class="collapse navbar-collapse" id="navbar">
-                                <div class="d-flex align-items-center" style="margin-left: 1200px">
+                                <div class="d-flex align-items-center">
                                     <div class="input-group">
                                         <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
                                         <input type="text" class="form-control" placeholder="Type here..." name="searchKey">
                                     </div>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -45,15 +52,12 @@
                                                     <h5>{{ $item->email }}</h5>
                                                 </div>
                                             </td>
-                                            @if ($item->role == 'admin')
-                                                <td class="text-end">
-                                                    <button class="btn btn-danger mt-4" disabled>Remove</button>
-                                                </td>
-                                            @else
+                                            <form action="{{ route('userDelete', $item->id) }}" method="POST">
+                                                @csrf
                                                 <td class="text-end">
                                                     <button class="btn btn-danger mt-4">Remove</button>
                                                 </td>
-                                            @endif
+                                            </form>
                                         </tr>
                                     @endif
                                 @endforeach

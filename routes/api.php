@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CertificateController;
 
 // Route::middleware([AuthCheck::class])->group(function(){
@@ -32,5 +33,6 @@ Route::group(['middleware' => 'auth:sanctum'],function() {
     Route::get('/certificate/list', [CertificateController::class, 'certificateList']);
 
     //article
-    Route::get('/articles',[ArticleController::class,'article']);
+    Route::get('/articles',[ArticleController::class, 'article']);
+    Route::post('/articles/search', [ArticleController::class, 'articleSearch']);
 });

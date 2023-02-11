@@ -54,7 +54,7 @@
                                         <div class="text-danger ms-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div>
+                                <div class="col-12 mt-3">
                                     <input type="file"  id="files" class="form-control" name="image[0]" multiple>
                                     @error('image.*')
                                         <div class="text-danger ms-1">{{ $message }}</div>

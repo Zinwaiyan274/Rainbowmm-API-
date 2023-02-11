@@ -7,6 +7,7 @@ use App\Models\Certificate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class CertificateController extends Controller
@@ -15,12 +16,12 @@ class CertificateController extends Controller
     public function certificateList(){
         $data = Certificate::paginate(6);
 
-        return view('certificate', compact('data'));
+        return view('certificate.certificate', compact('data'));
     }
 
     // upload certificate page
     public function uploadCertificate(){
-        return view('uploadCertificate');
+        return view('certificate.uploadCertificate');
     }
 
     // upload certificate process
@@ -39,7 +40,8 @@ class CertificateController extends Controller
 
         $file = $request->file('img');
         $fileName = uniqid().'_'.$file->getClientOriginalName();
-        $file->move(public_path().'/certificateImg', $fileName);
+        Storage::disk('public')->put('certificate/'.$fileName, File::get($file));
+
 
         Certificate::insert([
             'image' => $fileName,
@@ -47,7 +49,7 @@ class CertificateController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        return redirect()->route('certificateList')->with(['success' => 'New Certificate has been added successfully!']);
+        return redirect()->route('certificateList')->with(['success' => 'New Certificate added successfully!']);
     }
 
     // delete certificate process

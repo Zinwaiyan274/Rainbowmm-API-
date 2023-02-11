@@ -26,25 +26,25 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'user2',
-            'email' => 'user2@gmail.com',
+            'email' => 'user3@gmail.com',
             'password' => Hash::make('admin'),
-            'role'=>'admin'
+            'role'=>    'user'
         ]);
 
-        Category::create([
-            'title' => 'Health'
-        ]);
+        // Category::create([
+        //     'title' => 'Health'
+        // ]);
 
-        Category::create([
-            'title' => 'Beauty'
-        ]);
+        // Category::create([
+        //     'title' => 'Beauty'
+        // ]);
 
-        Category::create([
-            'title' => 'Knowledge'
-        ]);
+        // Category::create([
+        //     'title' => 'Knowledge'
+        // ]);
 
-        Category::create([
-            'title' => 'Entertainment'
-        ]);
+        // Category::create([
+        //     'title' => 'Entertainment'
+        // ]);
     }
 }

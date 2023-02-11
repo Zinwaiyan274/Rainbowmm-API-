@@ -5747,7 +5747,7 @@ fieldset:disabled .btn {
 }
 
 .alert-success {
-  --bs-alert-color: #125237;
+  --bs-alert-color: #000000;
   --bs-alert-bg: #d5f5e7;
   --bs-alert-border-color: #c0f0dc;
 }
@@ -20148,7 +20148,8 @@ fieldset:disabled .btn {
 }
 
 .alert-success {
-  background-image: linear-gradient(310deg, #2dce89 0%, #26adab 100%);
+    background-color: #103f74;
+	background-blend-mode: screen;
 }
 
 .alert-info {
