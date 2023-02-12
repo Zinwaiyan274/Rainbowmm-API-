@@ -91,7 +91,7 @@
         ++i;
         $('#addMoreArticle').append('<span class="article" id="more_articles"><div class="col-12 mt-4 "><label class="fs-4 inter">Content</label><textarea name="content['
             +i+']" class="form-control"  rows="15" style="resize: none"></textarea></div><div><input type="file" id="files" class="form-control" name="image['
-            +i+']" multiple><img id="preview-image-before-upload" style="max-height: 250px;"><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></div></span>');
+            +i+']" multiple><img id="preview-image-before-upload" style="max-height: 250px;"><button type="button" class="btn btn-outline-danger remove-input-field mt-3">Delete</button></div></span>');
     });
 
     $(document).on('click', '.remove-input-field', function () {
@@ -110,21 +110,10 @@ $(document).on({
         fileReader.onload = (function(e) {
           var file = e.target;
           var lastList = $("#img_files").last();
-//   lastList.clone().insertAfter(lastList);
-        //   $("<div class=\"pip\">" +
-        //     "<img style=\"max-height: 150px;\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-        //     "<br/><span class=\"remove\"><b>X</b></span>" +
-        //     "</div>").insertAfter("#img_files");
             $('#img_files').after("<div class=\"pip\">" +
-            "<img style=\"max-height: 150px;\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<img style=\"max-height: 300px;\" \"max-width: 250px;\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
             "<br/><span class=\"remove\"><b>X</b></span>" +
             "</div>");
-        // var preview = "<div class=\"pip\">" +
-        //     "<img style=\"max-height: 150px;\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-        //     "<br/><span class=\"remove\"><b>X</b></span>" +
-        //     "</div>";
-        //     preview.addAfter('#img_files');
-            // $(this).parents('#more_articles').siblings('#img_files:last').append(preview);
           $(".remove").click(function(){
             $(this).parent(".pip").remove();
           });
@@ -148,7 +137,7 @@ $(document).on({
         fileReader.onload = (function(e) {
           var file = e.target;
           $("<div class=\"pip\">" +
-            "<img style=\"max-height: 150px;\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<img style=\"max-height: 300px;\" \"max-width: 250px;\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
             "<br/><span class=\"remove\"><b>X</b></span>" +
             "</div>").insertAfter("#files");
           $(".remove").click(function(){

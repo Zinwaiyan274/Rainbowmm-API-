@@ -11,12 +11,12 @@
                         <div class="col-md-6 d-flex justify-content-end">{{ $article->created_at->format('F j,Y') }}</div>
                     </div>
                     <div class="text-center mb-3">
-                        <img src="{{ asset("storage/heroImage/$article->hero_image") }}" alt="" width='200px' class='img-fluid'>
+                        <img src="{{ asset("storage/heroImage/$article->hero_image") }}" alt="" width='500px' class='img-fluid img-thumbnail'>
                     </div>
                     @foreach ($article->postContents as $content)
                         <p>{{ $content->content }}</p>
                         <div class="text-center">
-                            <img src="{{ asset("storage/postImage/$content->image") }}" alt="" width='200px' class='img-fluid'>
+                            <img src="{{ asset("storage/postImage/$content->image") }}" alt="" width='300px' class='img-fluid img-thumbnail'>
                         </div>
                     @endforeach
                 </div>

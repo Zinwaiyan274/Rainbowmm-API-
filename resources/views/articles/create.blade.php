@@ -64,10 +64,10 @@
                         </div>
                         <div class="row mx-5 mt-5">
                                 <div class="col-6">
-                                    <button class="col btn btn-lg btn-success me-3" type="submit">Submit</button>
                                     <a href="{{ route('articlesPage') }}">
-                                        <input class="col btn btn-lg btn-outline-danger ms-3"  type="button" value="Back"/>
+                                        <input class="col btn btn-lg btn-outline-danger me-3"  type="button" value="Back"/>
                                     </a>
+                                    <button class="col btn btn-lg btn-success ms-3" type="submit">Submit</button>
                                 </div>
                                 <div class="col d-flex justify-content-end" id='addArticle'>
                                     <i class="fa-solid fa-circle-plus fs-1" style="color: #3B71FE"></i>

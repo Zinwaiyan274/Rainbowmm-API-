@@ -27,14 +27,13 @@ class ArticleController extends Controller
 
     // upload article
     public function saveArticle(Request $request){
-        $this->validateData($request);
+        $this->validateData($request,'create');
         $data = $this->getHeroData($request);
 
         //save hero image
         if($request->hasFile('hero_image')){
             $hero_image = $request->file('hero_image');
             $filename = uniqid().'_'.$hero_image->getClientOriginalName();
-            // $hero_image->move(public_path().'/heroImage',$filename);
             Storage::disk('public')->put('heroImage/'.$filename, File::get($hero_image));
             $data['hero_image'] = $filename;
         }
@@ -68,7 +67,7 @@ class ArticleController extends Controller
                 ]);
                 }
 
-        return redirect()->back();
+        return redirect()->route('articlesPage')->with(['success'=>'New Article Added Successfully!']);
     }
 
     // detail article page

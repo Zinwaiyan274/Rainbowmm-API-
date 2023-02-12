@@ -38,18 +38,19 @@
                         <div class="col-xl-4 col-md-4">
                             <a href="{{ route('articleDetail',$article->id) }}" class="d-inline-block text-decoration-none">
                             <div class="card w-85 my-4 ms-4 me-3 shadow-xl">
-                                <img src="{{ asset("heroImage/$article->hero_image") }}" class="card-img-top"
+                                <img src="{{ asset("storage/heroImage/$article->hero_image") }}" height='150px' class="card-img-top"
                                   alt="Hollywood Sign on The Hill" />
                                 <div class="card-body">
-                                  <h5 class="card-title">{{ $article->title }}</h5>
-                                  @foreach ($article->postContents as $content)
+                                  <h5 class="card-title fw-bolder">{{ $article->title }}</h5>
+                                  {{-- @foreach ($article->postContents as $content)
                                   <p class="card-text">
                                     {{ Str::limit($content->content, 40, '...')  }}
                                   </p>
-                                  @endforeach
-                                  <p class="card-text">
-                                    <small class="text-muted">{{ $article->created_at->diffForHumans() }}</small>
-                                  </p>
+                                  @endforeach --}}
+                                  <div class="row ">
+                                    <div class="col-md-3 d-flex justify-content-start">{{ $article->author_name }}</div>
+                                    <div class="col-md-9 d-flex justify-content-end">{{ $article->created_at->format('F j,Y') }}</div>
+                                  </div>
                                 </div>
                             </div>
                             </a>
