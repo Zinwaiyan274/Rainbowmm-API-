@@ -25,4 +25,11 @@ class UserController extends Controller
 
         return view('user', compact('data'));
     }
+
+    // user delete
+    public function userDelete($id){
+        User::where('id', $id)->delete();
+
+        return back()->with(['success' => 'User account have been deleted successfully!']);
+    }
 }

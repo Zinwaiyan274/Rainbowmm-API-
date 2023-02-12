@@ -25,13 +25,14 @@ Route::middleware([AuthCheck::class])->prefix('dashboard')->group(function () {
         Route::get('articles/detail/{id}','detail')->name('articleDetail');
         Route::get('articles/edit/{id}','edit')->name('articleEdit');
         Route::post('articles/update/{id}','update')->name('articleUpdate');
+        Route::post('articles/search', 'articleSearch')->name('artcileSearch');
     });
 
     //  user
     Route::controller(UserController::class)->group(function() {
         Route::get('user/list', 'userList')->name('userList');
-
-        Route::post('user/list', 'userSearch')->name('userSearch');
+        Route::post('user/search', 'userSearch')->name('userSearch');
+        Route::post('user/delete/{id}', 'userDelete')->name('userDelete');
     });
 
     // certificate

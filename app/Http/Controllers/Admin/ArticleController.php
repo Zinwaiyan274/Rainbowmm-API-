@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\User;
 use App\Models\PostContent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,6 +16,7 @@ class ArticleController extends Controller
     // articles list page
     public function articlesPage(){
         $articles = Post::with('postContents')->paginate(6);
+
         return view('articles.articles',['articles'=>$articles]);
     }
 
@@ -23,8 +25,9 @@ class ArticleController extends Controller
         return view('articles.create');
     }
 
+    // upload article
     public function saveArticle(Request $request){
-        $this->validateData($request,'create');
+        $this->validateData($request);
         $data = $this->getHeroData($request);
 
         //save hero image
@@ -32,7 +35,7 @@ class ArticleController extends Controller
             $hero_image = $request->file('hero_image');
             $filename = uniqid().'_'.$hero_image->getClientOriginalName();
             // $hero_image->move(public_path().'/heroImage',$filename);
-            Storage::disk('public')->put('heroImage/'.$filename,File::get($hero_image));
+            Storage::disk('public')->put('heroImage/'.$filename, File::get($hero_image));
             $data['hero_image'] = $filename;
         }
 
@@ -53,7 +56,7 @@ class ArticleController extends Controller
         //save content image to storage
         foreach($request->file('image.*') as $img){
             $filename = uniqid().'_'.$img->getClientOriginalName();
-            Storage::disk('public')->put('postImage/'.$filename,File::get($img));
+            Storage::disk('public')->put('postImage/'.$filename, File::get($img));
             $content_images[] = $filename;
         }
 
@@ -65,19 +68,24 @@ class ArticleController extends Controller
                 ]);
                 }
 
-        return redirect()->route('articlesPage');
+        return redirect()->back();
     }
 
+    // detail article page
     public function detail($id){
         $article = Post::where('id',$id)->with('postContents')->first();
+
         return view('articles.detail',['article'=>$article]);
     }
 
+    // update article page
     public function edit($id){
         $article = Post::where('id',$id)->with('postContents')->first();
+
         return view('articles.edit',['article'=>$article]);
     }
 
+    // update article
     public function update(Request $request,$id){
         $article = Post::where('id',$id)->with('postContents')->first();
         $this->validateData($request,'update');
@@ -100,7 +108,7 @@ class ArticleController extends Controller
         //save post
         foreach($request->content as $content){
             PostContent::where('post_id',$id)->update(['content' => $content]);
-            }
+        }
 
         // $content = PostContent::where('post_id',$id)->get();
 
@@ -116,7 +124,7 @@ class ArticleController extends Controller
             }
              //save content image to database
         for($i=0;$i<count($content_images);$i++){
-            PostContent::where('post_id',$id)
+            PostContent::where('post_id', $id)
                 ->update([
                     'image' => $content_images[$i]
                 ]);
@@ -124,11 +132,22 @@ class ArticleController extends Controller
         }
 
         return redirect()->back();
-
     }
 
-    //validation
-    private function validateData($request,$status){
+    // search article
+    public function articleSearch(Request $request){
+        $key = $request->searchKey;
+
+        $searchData = Post::where('title', 'like', '%'.$key.'%')
+                        ->orWhere('author_name', 'like', '%'.$key.'%')
+                        ->with('postContents')
+                        ->paginate(7);
+
+        return view('articles.articles',['articles'=>$searchData]);
+    }
+
+    // validation
+    private function validateData($request, $status){
         $validate = [
             'title' => 'required',
             'category_id' => 'required',
@@ -142,7 +161,7 @@ class ArticleController extends Controller
         Validator::make($request->all(),$validate)->validate();
     }
 
-    //get input data
+    // get input data
     private function getHeroData($request){
         return[
             'title' => $request->title,

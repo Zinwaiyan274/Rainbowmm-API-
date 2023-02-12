@@ -18,7 +18,6 @@ class UserController extends Controller
             'status' => true,
             'data' => $data
         ]);
-
     }
 
     // update user account
@@ -42,7 +41,7 @@ class UserController extends Controller
         } else {
             $file = $request->file('img');
             $fileName = uniqid().'_'.$file->getClientOriginalName();
-            $file->move(public_path().'/userImg', $fileName);
+            Storage::disk('public')->put('certificate/'.$fileName, File::get($file));
 
             $data = [
                 'name' => $request->name,
@@ -60,6 +59,5 @@ class UserController extends Controller
                 'userData' => $userData,
             ]);
         }
-
     }
 }

@@ -7,24 +7,29 @@
 
                 <!-- Navbar -->
                 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
-
                     <div class="container-fluid py-1 px-3">
                         <nav aria-label="breadcrumb" class="mt-4">
                             <h3 class="font-weight-bolder inter" style="color: #1A202C; font-size: 20px">Certificates</h3>
                         </nav>
+                        <div style="margin-right: 600px">
+                            @if (Session::has('success'))
+                                <div class="alert alert-success alert-dismissible d-flex align-items-center text-white" role="alert">
+                                    <p class="my-1">{{ Session::get('success') }}</p>
+                                    <button type="button" class="btn-close ms-3" style="margin-top: 2px" data-bs-dismiss="alert" aria-label="Close">
+                                        <i class="fa-solid fa-close fs-4"></i>
+                                    </button>
+                                </div>
+                            @endif
+                            @if (Session::has('deleted'))
+                                <div class="alert alert-success alert-dismissible d-flex align-items-center text-white" role="alert">
+                                    <p class="my-1">{{ Session::get('deleted') }}</p>
+                                    <button type="button" class="btn-close ms-3" style="margin-top: 2px" data-bs-dismiss="alert" aria-label="Close">
+                                        <i class="fa-solid fa-close fs-4"></i>
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                    @if (Session::has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ Session::get('success') }}
-                            {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
-                        </div>
-                    @endif
-                    @if (Session::has('deleted'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ Session::get('deleted') }}
-                            {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
-                        </div>
-                    @endif
                 </nav>
                 <!-- End Navbar -->
 
@@ -33,7 +38,7 @@
                     @foreach ($data as $item)
                         <div class="col-4">
                             <div class="card border w-90 mx-4 mt-5 mb-3 shadow-xl">
-                                <img src="{{ asset('certificateImg/'.$item->image) }}" class="card-img-top p-3 w-100"
+                                <img src="{{ asset('storage/certificate/'.$item->image) }}" class="card-img-top p-3 w-100"
                                 alt="Hollywood Sign on The Hill" />
                             </div>
                             <form action="{{ route('deleteCertificate', $item->id) }}" method="post">
