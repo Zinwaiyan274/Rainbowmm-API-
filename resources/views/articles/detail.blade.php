@@ -11,7 +11,7 @@
                         <div class="col-md-6 d-flex justify-content-end">{{ $article->created_at->format('F j,Y') }}</div>
                     </div>
                     <div class="text-center mb-3">
-                        <img src="{{ asset("heroImage/$article->hero_image") }}" alt="" class='img-fluid'>
+                        <img src="{{ asset("storage/heroImage/$article->hero_image") }}" alt="" width='200px' class='img-fluid'>
                     </div>
                     @foreach ($article->postContents as $content)
                         <p>{{ $content->content }}</p>
@@ -22,12 +22,23 @@
                 </div>
                 <div class="ms-5">
                     <a href="{{ route('articlesPage') }}">
-                        <button class="btn btn-success">Back</button>
+                        <button class="col btn btn-lg btn-outline-danger me-3">Back</button>
                     </a>
                     <a href="{{ route('articleEdit',$article->id) }}">
-                        <button class="btn btn-primary">Edit</button>
+                        <button class="col btn btn-lg btn-success ms-3">Edit</button>
                     </a>
                 </div>
+                {{-- <div class="row mx-5 mt-5">
+                    <div class="col-6">
+                        <button class="col btn btn-lg btn-success me-3" type="submit">Submit</button>
+                        <a href="{{ route('articlesPage') }}">
+                            <input class="col btn btn-lg btn-outline-danger ms-3"  type="button" value="Delete"/>
+                        </a>
+                    </div>
+                    <div class="col d-flex justify-content-end" id='addArticle'>
+                        <i class="fa-solid fa-circle-plus fs-1" style="color: #3B71FE"></i>
+                    </div>
+            </div> --}}
             </main>
         </div>
     </div>

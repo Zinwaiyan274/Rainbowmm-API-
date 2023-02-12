@@ -24,7 +24,7 @@ class ArticleController extends Controller
     }
 
     public function saveArticle(Request $request){
-        $this->validateData($request);
+        $this->validateData($request,'create');
         $data = $this->getHeroData($request);
 
         //save hero image
@@ -51,7 +51,7 @@ class ArticleController extends Controller
         $content = PostContent::where('post_id',$post->id)->get();
 
         //save content image to storage
-        foreach($request->file('image') as $img){
+        foreach($request->file('image.*') as $img){
             $filename = uniqid().'_'.$img->getClientOriginalName();
             Storage::disk('public')->put('postImage/'.$filename,File::get($img));
             $content_images[] = $filename;
@@ -65,7 +65,7 @@ class ArticleController extends Controller
                 ]);
                 }
 
-        return redirect()->back();
+        return redirect()->route('articlesPage');
     }
 
     public function detail($id){

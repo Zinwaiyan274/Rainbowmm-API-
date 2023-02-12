@@ -28,7 +28,7 @@
                         <div class="col-xl-4 col-md-4">
                             <a href="{{ route('articleDetail',$article->id) }}" class="d-inline-block text-decoration-none">
                             <div class="card w-85 my-4 ms-4 me-3 shadow-xl">
-                                <img src="{{ asset("heroImage/$article->hero_image") }}" class="card-img-top"
+                                <img src="{{ asset("storage/heroImage/$article->hero_image") }}" class="card-img-top"
                                   alt="Hollywood Sign on The Hill" />
                                 <div class="card-body">
                                   <h5 class="card-title">{{ $article->title }}</h5>
