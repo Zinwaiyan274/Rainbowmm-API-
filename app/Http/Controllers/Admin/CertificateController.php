@@ -59,8 +59,8 @@ class CertificateController extends Controller
 
         Certificate::where('id', $id)->delete();
 
-        if(File::exists(public_path().'/certificateImg/'.$dbImage)){
-            File::delete(public_path().'/certificateImg/'.$dbImage);
+        if(File::exists(public_path().'/certificate/'.$dbImage)){
+            File::delete(public_path().'/certificate/'.$dbImage);
         }
 
         return back()->with(['deleted' => 'Certificate Has Been Deleted!']);

@@ -25,26 +25,26 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::create([
-            'name' => 'user2',
-            'email' => 'user3@gmail.com',
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('admin'),
-            'role'=>    'user'
+            'role'=>    'admin'
         ]);
 
-        // Category::create([
-        //     'title' => 'Health'
-        // ]);
+        Category::create([
+            'title' => 'Health'
+        ]);
 
-        // Category::create([
-        //     'title' => 'Beauty'
-        // ]);
+        Category::create([
+            'title' => 'Beauty'
+        ]);
 
-        // Category::create([
-        //     'title' => 'Knowledge'
-        // ]);
+        Category::create([
+            'title' => 'Knowledge'
+        ]);
 
-        // Category::create([
-        //     'title' => 'Entertainment'
-        // ]);
+        Category::create([
+            'title' => 'Entertainment'
+        ]);
     }
 }

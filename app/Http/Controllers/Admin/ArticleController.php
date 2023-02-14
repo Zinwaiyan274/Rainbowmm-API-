@@ -153,7 +153,7 @@ class ArticleController extends Controller
             // 'hero_image' => 'required|mimes:png,jpg,jpeg',
             'author_name' => 'required',
             'content.*' => 'required',
-            'image.*' => 'mimes:png,jpg,jpeg'
+            'image.*' => 'required|mimes:png,jpg,jpeg'
         ];
 
         $validate['hero_image'] = $status == 'update' ?  'mimes:png,jpg,jpeg' :  'required|mimes:png,jpg,jpeg';

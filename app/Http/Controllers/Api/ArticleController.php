@@ -10,7 +10,7 @@ class ArticleController extends Controller
 {
     // article data
     public function article(){
-        $article = Post::with('postContents')->get();
+        $article = Post::with('postContents')->with('postReactions')->paginate(6);
 
         return response()->json([
             'status' => true,
@@ -25,7 +25,8 @@ class ArticleController extends Controller
         $searchData = Post::where('title', 'like', '%'.$searchKey.'%')
                         ->orWhere('author_name', 'like', '%'.$searchKey.'%')
                         ->with('postContents')
-                        ->paginate(7);
+                        ->with('postReactions')
+                        ->paginate(6);
 
         return response()->json([
             'status' => true,

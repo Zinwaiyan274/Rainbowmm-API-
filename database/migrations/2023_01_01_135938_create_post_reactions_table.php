@@ -18,8 +18,7 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete;
             $table->longText('comment')->nullable();
-            $table->integer('like')->nullable();
-            $table->enum('status',['true','false'])->default('false')->nullable();
+            $table->enum('like',['true','false'])->default('false')->nullable();
             $table->timestamps();
         });
     }

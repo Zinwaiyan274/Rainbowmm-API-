@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ReactionController;
 use App\Http\Controllers\Api\CertificateController;
 
 // Route::middleware([AuthCheck::class])->group(function(){
@@ -30,9 +31,12 @@ Route::group(['middleware' => 'auth:sanctum'],function() {
     });
 
     // certificate
-    Route::get('/certificate/list', [CertificateController::class, 'certificateList']);
+    Route::get('/certificates', [CertificateController::class, 'certificateList']);
 
     //article
     Route::get('/articles',[ArticleController::class, 'article']);
     Route::post('/articles/search', [ArticleController::class, 'articleSearch']);
+
+    //User Reaction
+    Route::post('/reaction',[ReactionController::class,'saveReaction']);
 });

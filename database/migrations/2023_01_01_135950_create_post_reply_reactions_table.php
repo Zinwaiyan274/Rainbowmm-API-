@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('post_reply_reactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('post_reaction_id')->constrained('post_reactions')->onDelete('cascade');
-            $table->integer('reply_like')->nulable();
             $table->longText('reply_comment')->nullable();
-            $table->enum('status',['true','false'])->default('false')->nullable();
+            $table->enum('reply_like',['true','false'])->default('false')->nullable();
             $table->integer('reply_user_id');
             $table->timestamps();
         });

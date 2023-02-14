@@ -48,8 +48,8 @@
                                   </p>
                                   @endforeach --}}
                                   <div class="row ">
-                                    <div class="col-md-3 d-flex justify-content-start">{{ $article->author_name }}</div>
-                                    <div class="col-md-9 d-flex justify-content-end">{{ $article->created_at->format('F j,Y') }}</div>
+                                    <div class="col-md-6 d-flex justify-content-start "><small>{{ $article->author_name }}</small></div>
+                                    <div class="col-md-6 d-flex justify-content-end"><small>{{ $article->created_at->format('F j,Y') }}</small></div>
                                   </div>
                                 </div>
                             </div>
