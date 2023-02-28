@@ -10,48 +10,66 @@ class ReactionController extends Controller
 {
     public function saveReaction(Request $request){
         $data = $this->getData($request);
-        $check = PostReaction::where('user_id',$request->user_id)->where('post_id',$request->post_id)->first();
 
         if($request->comment && $request->like){
+            //reaction with like and comment
             $data['like'] = $request->like;
             $data['comment'] = $request->comment;
-           // check already like and comment
-           if(!$check){
-                PostReaction::create($data);
-           }else{
-                PostReaction::where('id',$check->id)->update([
-                        'comment'=>$request->comment,
-                        'like'=>$request->like
-                ]);
-           }
+            PostReaction::create($data);
+
         }else if($request->comment){
+            //reaction with comment
             $data['comment'] = $request->comment;
-           // check already like and comment
-           if(!$check){
-                PostReaction::create($data);
-           }else{
-                PostReaction::where('id',$check->id)->update([
-                        'comment'=>$request->comment,
-                ]);
-           }
+            PostReaction::create($data);
+
         }else if($request->like){
+            //reaction with like
             $data['like'] = $request->like;
-           // check already like and comment
-           if(!$check){
-                PostReaction::create($data);
-           }else{
-                PostReaction::where('id',$check->id)->update([
-                        'like'=>$request->like,
-                ]);
-           }
+            PostReaction::create($data);
         }
 
         $reaction = PostReaction::where('user_id',$request->user_id)->get();
         $like = PostReaction::where('like','true')->get();
-        $comment = PostReaction::get();
+        $comment = PostReaction::with(['users'=>function ($q) use ($request){
+                    $q->where('id',$request->user_id);
+        }])->get();
         return response()->json([
             'status'=>true,
-            'data'=>['User Reaction'=>$reaction,'Like Count'=>count($like),'Comment Count'=>count($comment),'Comments'=>$comment]
+            'data'=>['reaction'=>$reaction,'like_ount'=>count($like),'comment_count'=>count($comment),'comments'=>$comment]
+        ]);
+    }
+
+    public function updateReaction(Request $request,$id){
+        if($request->comment && $request->like){
+            //reaction with like and comment
+            PostReaction::where('id',$id)->update([
+                'like'=>$request->like,
+                'comment'=>$request->comment
+            ]);
+
+        }else if($request->comment){
+            //reaction with comment
+            PostReaction::where('id',$id)->update([
+                'comment'=>$request->comment
+            ]);
+
+        }else if($request->like){
+            //reaction with like
+            PostReaction::where('id',$id)->update([
+                'like'=>$request->like
+            ]);
+        }
+        $comment = PostReaction::where('id',$id)->get();
+        return response()->json([
+            'status'=>true,
+            'data'=>['comments'=>$comment]
+        ]);
+    }
+
+    public function deleteReaction($id){
+        PostReaction::where('id',$id)->delete();
+        return response()->json([
+            'status'=>true,
         ]);
     }
 

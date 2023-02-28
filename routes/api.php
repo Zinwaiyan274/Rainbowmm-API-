@@ -34,9 +34,11 @@ Route::group(['middleware' => 'auth:sanctum'],function() {
     Route::get('/certificates', [CertificateController::class, 'certificateList']);
 
     //article
-    Route::get('/articles',[ArticleController::class, 'article']);
+    Route::post('/articles',[ArticleController::class, 'article']);
     Route::post('/articles/search', [ArticleController::class, 'articleSearch']);
 
     //User Reaction
     Route::post('/reaction',[ReactionController::class,'saveReaction']);
+    Route::put('/reaction/update/{id}',[ReactionController::class,'updateReaction']);
+    Route::delete('/reaction/delete/{id}',[ReactionController::class,'deleteReaction']);
 });
