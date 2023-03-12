@@ -10,7 +10,17 @@ class ReactionController extends Controller
 {
     public function saveReaction(Request $request){
         $data = $this->getData($request);
+        $check_reaction = PostReaction::where('post_id',$request->post_id)
+                    ->where('user_id',$request->user_id)
+                    ->get();
 
+        //add more comments when there is another comments
+        if(!empty($check_reaction)){
+            $data['comment'] = $request->comment;
+            PostReaction::create($data);
+        }
+
+        //first time comments and like
         if($request->comment && $request->like){
             //reaction with like and comment
             $data['like'] = $request->like;
@@ -35,29 +45,51 @@ class ReactionController extends Controller
         }])->get();
         return response()->json([
             'status'=>true,
-            'data'=>['reaction'=>$reaction,'like_ount'=>count($like),'comment_count'=>count($comment),'comments'=>$comment]
+            'data'=>['check'=>$status,'reaction'=>$reaction,'like_count'=>count($like),'comment_count'=>count($comment),'comments'=>$comment]
         ]);
     }
 
     public function updateReaction(Request $request,$id){
+        $check_reaction = PostReaction::where('id',$id)->first();
+        $reaction = PostReaction::where('post_id',$check_reaction->post_id)->where('user_id',$check_reaction->user_id)->get();
+
         if($request->comment && $request->like){
-            //reaction with like and comment
+            //condition with many reaction
+            PostReaction::where('id',$id)->update([
+                'comment'=>$request->comment
+            ]);
+            //update like all related comments
+            if(!empty($reaction)){
+                foreach($reaction as $reaction){
+                    PostReaction::where('id',$reaction->id)->update([
+                        'like'=>$request->like,
+                    ]);
+                }
+            }else{
+            //condition with only one reaction
             PostReaction::where('id',$id)->update([
                 'like'=>$request->like,
                 'comment'=>$request->comment
             ]);
-
+            }
         }else if($request->comment){
-            //reaction with comment
             PostReaction::where('id',$id)->update([
                 'comment'=>$request->comment
             ]);
-
         }else if($request->like){
-            //reaction with like
+           //condition with already like and many comments
+            if(!empty($reaction)){
+                foreach($reaction as $reaction){
+                    PostReaction::where('id',$reaction->id)->update([
+                        'like'=>$request->like
+                    ]);
+                }
+            }else{
+            //condition with only one reaction
             PostReaction::where('id',$id)->update([
                 'like'=>$request->like
             ]);
+            }
         }
         $comment = PostReaction::where('id',$id)->get();
         return response()->json([
@@ -81,5 +113,3 @@ class ReactionController extends Controller
         ]);
     }
 }
-
-

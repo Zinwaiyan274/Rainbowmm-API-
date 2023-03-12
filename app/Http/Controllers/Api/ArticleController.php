@@ -20,27 +20,31 @@ class ArticleController extends Controller
                 ->with(['PostReactions'=>function ($q){
                     $q->join('users','post_reactions.user_id','users.id');
                 }])
+                ->withCount(['PostReactions as total_comment'=>function($q){
+                    $q->where('comment','!=',null);
+                }])
+                ->withCount(['PostReactions as total_like'=>function($q){
+                    $q->where('like',true);
+                }])
                 ->paginate(6);
-        foreach($article as $a){
-            $total_like = PostReaction::where('post_id',$a->id)->where('like',true)->count();
-            $total_comment = PostReaction::where('post_id',$a->id)->where('comment','!=',null)->get();
-        }
-
         }else{
         $article = Post::where('category_id',1)
                 ->with('PostContents')
-                ->with('PostReactions')
+                ->with(['PostReactions'=>function ($q){
+                    $q->join('users','post_reactions.user_id','users.id');
+                  }])
+                ->withCount(['PostReactions as total_comment'=>function($q){
+                    $q->where('comment','!=',null);
+                }])
+                ->withCount(['PostReactions as total_like'=>function($q){
+                    $q->where('like',true);
+                }])
                 ->paginate(6);
-        foreach($article as $a){
-            $total_like = PostReaction::where('post_id',$a->id)->where('like','true')->count();
-            $total_comment = PostReaction::where('post_id',$a->id)->where('comment','!=',null)->get();
-        }
-
         }
 
         return response()->json([
             'status' => true,
-            'data' => ['article'=>$article,'total_like'=>$total_like,'total_comment'=>count($total_comment)]
+            'data' => ['article'=>$article]
         ]);
     }
 
@@ -48,15 +52,23 @@ class ArticleController extends Controller
     public function articleSearch(Request $request){
         $searchKey = $request->searchKey;
 
-        $searchData = Post::where('title', 'like', '%'.$searchKey.'%')
+        $article = Post::where('title', 'like', '%'.$searchKey.'%')
                         ->orWhere('author_name', 'like', '%'.$searchKey.'%')
                         ->with('postContents')
-                        ->with('postReactions')
+                        ->with(['PostReactions'=>function ($q){
+                            $q->join('users','post_reactions.user_id','users.id');
+                          }])
+                        ->withCount(['PostReactions as total_comment'=>function($q){
+                            $q->where('comment','!=',null);
+                        }])
+                        ->withCount(['PostReactions as total_like'=>function($q){
+                            $q->where('like',true);
+                        }])
                         ->paginate(6);
 
         return response()->json([
             'status' => true,
-            'data' => $searchData
+            'data' => ['article'=>$article]
         ]);
     }
 }
